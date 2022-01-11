@@ -1,0 +1,41 @@
+
+## Use this file to document the commands and write the results you get.
+
+
+
+#### 1. Download the data from https://drive.google.com/open?id=1TNZiSaNmcDbZ7fglKY7lPhni3ucD5Qn3
+
+
+
+
+#### 2. How many rows does the dataset have?
+wc -l cast.csv
+
+
+#### 3. Change the delimiter to ";"
+sed "s/,/;/g" cast.csv > cast_semi_colon.csv
+
+
+#### 4. Output the header into the separate file cast_header.csv and remove it from the data
+cat header.csv cast.csv > cast_header.csv
+sed -i 1d cast_header.csv
+
+ 
+#### 5. How many movies did Pierce Brosnan play in? 58!
+cut -d "," -f 3 cast.csv | sort | uniq -c
+
+
+#### 6. Were there more superman movies (238 superman) or batman movies (120) ?
+cut -d "," -f 1 cast.csv | sort | uniq -c
+### QUESTION: Can I classier Superman and Batman so that I dont go through the list?
+
+#### 7. How many roles are in this database? 1509354 ### Is that correct? 
+cut -d "," -f 5 cast.csv | sort | uniq -c | wc -l 
+
+#### 8. What is the most often played role? Reporter 
+cut -d "," -f 5 cast.csv | sort | uniq -c | sort
+### Can reverse the order?  flag: -r 
+
+#### 9. What is the most frequent movie name?
+cut -d "," -f 1 cast.csv | sort | uniq -c | sort
+
